@@ -28,6 +28,7 @@ export default function Home() {
   const [city, setCity] = useState<string | null>(null);
   const [town, setTown] = useState<string | null>(null);
   const [w3w, setW3w] = useState<string | null>(null);
+  const [w3wError, setW3wError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   // Auto-fetch location on mount
@@ -53,6 +54,8 @@ export default function Home() {
         setTown(null);
         setW3w(null);
         setCopied(false);
+        setW3wError(null);
+
 
         // Fetch city/town name (Nominatim)
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
@@ -66,7 +69,20 @@ export default function Home() {
         fetch(`https://api.what3words.com/v3/convert-to-3wa?coordinates=${lat},${lng}&key=${WHAT3WORDS_API_KEY}`)
           .then(res => res.json())
           .then(data => {
-            setW3w(data.words ? data.words : null);
+            if (data.words) {
+              setW3w(data.words);
+              setW3wError(null);
+            } else if (data.error) {
+              setW3w(null);
+              setW3wError('Unable to get what3words address.');
+            } else {
+              setW3w(null);
+              setW3wError('Unknown error with what3words.');
+            }
+          })
+          .catch(() => {
+            setW3w(null);
+            setW3wError('Unable to get what3words address.');
           });
       },
       (err) => {
@@ -108,12 +124,27 @@ export default function Home() {
         </div>
         <div className="space-y-6 px-4 pb-8">
           {/* Profile-style location card */}
-          <div className="w-full mb-4">
-            <div className="flex items-center bg-white dark:bg-[#1C1C1E] rounded-2xl shadow-sm px-4 py-3">
+          <div
+            className={`w-full mb-4 ${locError ? 'cursor-pointer hover:bg-[#F8F8F8] dark:hover:bg-[#232325]' : ''}`}
+            onClick={locError ? getLocation : undefined}
+            style={locError ? { userSelect: 'none' } : undefined}
+            tabIndex={locError ? 0 : -1}
+            role={locError ? 'button' : undefined}
+            aria-label={locError ? 'Retry location' : undefined}
+          >
+            <div
+              className={`flex items-center bg-white dark:bg-[#1C1C1E] rounded-2xl shadow-sm px-4 py-3 ${locError ? 'cursor-pointer hover:bg-[#F8F8F8] dark:hover:bg-[#232325]' : ''}`}
+              onClick={locError ? getLocation : undefined}
+              style={locError ? { userSelect: 'none' } : undefined}
+            >
               <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#E9E9EB] dark:bg-[#232325] mr-4 text-3xl">📍</span>
               <div className="flex-1 min-w-0 text-left">
                 <div className="text-lg font-semibold text-[#1C1C1E] dark:text-[#F2F2F7]">
-                  {locLoading ? 'Getting location…' : (town || city) ? (town || city) : 'Location Unavailable'}
+                {locLoading
+                    ? 'Getting location…'
+                    : (town || city)
+                    ? (town || city)
+                    : 'Location Unavailable'}
                 </div>
                 {locLoading ? null : location ? (
                   <>
@@ -140,10 +171,13 @@ export default function Home() {
                         Open in Maps
                       </a>
                     </div>
-
                   </>
                 ) : locError ? (
-                  <div className="text-sm text-red-500">{locError}</div>
+                  <div className="text-sm text-red-500">
+                    {locError === 'Unable to retrieve your location'
+                      ? 'Location access denied. Tap to try again or check browser settings.'
+                      : 'Location Unavailable. Tap to try again.'}
+                  </div>
                 ) : null}
               </div>
             </div>
