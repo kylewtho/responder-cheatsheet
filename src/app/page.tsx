@@ -1,43 +1,8 @@
 "use client";
 
-import { Card } from '@/components/Card';
 import { useState } from 'react';
 
-type GroupItem = {
-  key: string;
-  emoji: string;
-  title: string;
-  subtitle?: string;
-  isProfile?: boolean;
-  right?: string;
-};
-
-type Group = {
-  key: string;
-  items: GroupItem[];
-};
-
-const groups: Group[] = [
-  {
-    key: 'main',
-    items: [
-      { key: 'march', emoji: '🩸', title: 'MARCH' },
-      { key: 'imist', emoji: '📋', title: 'IMIST' },
-      { key: 'drabcde', emoji: '🩺', title: 'DRABCDE' },
-      { key: 'vitals', emoji: '💓', title: 'Vital Signs', right: 'On' },
-      { key: 'gcs', emoji: '🧠', title: 'Glasgow Coma Scale' },
-    ],
-  },
-  {
-    key: 'other',
-    items: [
-      { key: 'triage', emoji: '🚦', title: 'Triage Sieve' },
-      { key: 'methane', emoji: '🔥', title: 'METHANE' },
-    ],
-  },
-];
-
-const cards = [
+const cards: { key: string; emoji: string; title: string }[] = [
   { key: 'drabcde', emoji: '🩺', title: 'DRABCDE' },
   { key: 'march', emoji: '🩸', title: 'MARCH' },
   { key: 'vitals', emoji: '💓', title: 'Vital Signs' },
@@ -49,7 +14,7 @@ const cards = [
 
 export default function Home() {
   const [search, setSearch] = useState('');
-  const filtered = cards.filter(card =>
+  const filtered = cards.filter((card) =>
     card.title.toLowerCase().includes(search.toLowerCase())
   );
 
