@@ -28,13 +28,11 @@ export default function Home() {
   const [city, setCity] = useState<string | null>(null);
   const [town, setTown] = useState<string | null>(null);
   const [w3w, setW3w] = useState<string | null>(null);
-  const [w3wError, setW3wError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   // Auto-fetch location on mount
   useEffect(() => {
     getLocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getLocation = () => {
@@ -54,8 +52,6 @@ export default function Home() {
         setTown(null);
         setW3w(null);
         setCopied(false);
-        setW3wError(null);
-
 
         // Fetch city/town name (Nominatim)
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
@@ -71,22 +67,17 @@ export default function Home() {
           .then(data => {
             if (data.words) {
               setW3w(data.words);
-              setW3wError(null);
-            } else if (data.error) {
-              setW3w(null);
-              setW3wError('Unable to get what3words address.');
             } else {
               setW3w(null);
-              setW3wError('Unknown error with what3words.');
             }
           })
           .catch(() => {
             setW3w(null);
-            setW3wError('Unable to get what3words address.');
           });
       },
-      (err) => {
-        setLocError('Unable to retrieve your location');
+      (error) => {
+        const message = error.code === 1 ? 'Location access denied' : 'Unable to retrieve your location';
+        setLocError(message);
         setLocLoading(false);
       }
     );
