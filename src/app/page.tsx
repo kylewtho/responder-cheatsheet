@@ -27,6 +27,7 @@ export default function Home() {
   const [locLoading, setLocLoading] = useState(false);
   const [city, setCity] = useState<string | null>(null);
   const [town, setTown] = useState<string | null>(null);
+  const [suburb, setSuburb] = useState<string | null>(null);
   const [w3w, setW3w] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -50,13 +51,15 @@ export default function Home() {
         setLocLoading(false);
         setCity(null);
         setTown(null);
+        setSuburb(null);
         setW3w(null);
         setCopied(false);
 
-        // Fetch city/town name (Nominatim)
+        // Fetch city/town/suburb name (Nominatim)
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
           .then(res => res.json())
           .then(data => {
+            setSuburb(data.address?.suburb || null);
             setTown(data.address?.town || data.address?.village || null);
             setCity(data.address?.city || data.address?.state || null);
           });
@@ -133,8 +136,8 @@ export default function Home() {
                 <div className="text-lg font-semibold text-[#1C1C1E] dark:text-[#F2F2F7]">
                 {locLoading
                     ? 'Getting location…'
-                    : (town || city)
-                    ? (town || city)
+                    : (suburb || town || city)
+                    ? (suburb || town || city)
                     : 'Location Unavailable'}
                 </div>
                 {locLoading ? null : location ? (
