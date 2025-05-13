@@ -182,7 +182,7 @@ export default function Home() {
             {filtered.map((card, idx) => (
               <Link
                 key={card.key}
-                href={`/${card.key}`}
+                href={`./${card.key}`}
                 className="block w-full text-left focus:outline-none active:bg-[#E5E5EA] dark:active:bg-[#232325] transition-colors py-0"
                 tabIndex={0}
               >
