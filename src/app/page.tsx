@@ -13,8 +13,6 @@ const cards: { key: string; emoji: string; title: string }[] = [
   { key: 'methane', emoji: '🔥', title: 'METHANE' },
 ];
 
-const WHAT3WORDS_API_KEY = 'P4XL0OUA';
-
 export default function Home() {
   const [search, setSearch] = useState('');
   const filtered = cards.filter((card) =>
@@ -64,8 +62,8 @@ export default function Home() {
             setCity(data.address?.city || data.address?.state || null);
           });
 
-        // Fetch what3words
-        fetch(`https://api.what3words.com/v3/convert-to-3wa?coordinates=${lat},${lng}&key=${WHAT3WORDS_API_KEY}`)
+        // Fetch what3words (via server-side route so the API key never reaches the client)
+        fetch(`/api/w3w?coordinates=${lat},${lng}`)
           .then(res => res.json())
           .then(data => {
             if (data.words) {
