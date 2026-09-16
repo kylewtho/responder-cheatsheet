@@ -1,23 +1,24 @@
-import React from 'react';
-import IosHeader from '@/components/IosHeader';
-import MnemonicList from '@/components/MnemonicList';
+import DetailHeader from '@/components/DetailHeader';
+import { List } from '@/components/List';
+import { getTool } from '@/lib/tools';
 
 const methane = [
-  { letter: 'M', title: 'Major Incident', desc: 'Declared, or major incident standby.' },
-  { letter: 'E', title: 'Exact Location', desc: 'Precise location and best access point.' },
-  { letter: 'T', title: 'Type of Incident', desc: 'Nature of the incident (e.g. MVA, structural collapse, fire).' },
-  { letter: 'H', title: 'Hazards', desc: 'Present and potential hazards to responders.' },
-  { letter: 'A', title: 'Access / Egress', desc: 'Best routes in and out for responding services.' },
-  { letter: 'N', title: 'Number of Casualties', desc: 'Approximate number and severity of casualties.' },
-  { letter: 'E', title: 'Emergency Services', desc: 'Services present and any additional services required.' },
+  { badge: 'M', title: 'Major Incident', desc: 'Declared, or major incident standby.' },
+  { badge: 'E', title: 'Exact Location', desc: 'Precise location and best access point.' },
+  { badge: 'T', title: 'Type of Incident', desc: 'Nature of the incident (e.g. MVA, structural collapse, fire).' },
+  { badge: 'H', title: 'Hazards', desc: 'Present and potential hazards to responders.', tone: 'danger' as const },
+  { badge: 'A', title: 'Access / Egress', desc: 'Best routes in and out for responding services.' },
+  { badge: 'N', title: 'Number of Casualties', desc: 'Approximate number and severity of casualties.' },
+  { badge: 'E', title: 'Emergency Services', desc: 'Services present and any additional services required.' },
 ];
 
 export default function MethanePage() {
+  const tool = getTool('methane')!;
   return (
-    <main className="bg-[#F2F2F7] dark:bg-[#000] min-h-screen">
-      <IosHeader title="METHANE" backHref="/" />
-      <div className="max-w-md mx-auto px-4 pt-2 pb-8">
-        <MnemonicList items={methane} />
+    <main className="min-h-screen">
+      <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={15} strokeWidth={2.5} />} accent={tool.accent} />
+      <div className="mx-auto max-w-md px-4 pb-10 pt-4">
+        <List items={methane} accent={tool.accent} />
       </div>
     </main>
   );

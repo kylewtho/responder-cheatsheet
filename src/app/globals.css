@@ -76,6 +76,40 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* ---- App surface & wallpaper (light) ---- */
+  --app-bg-from: #eef1f6;
+  --app-bg-to: #f8f8fb;
+  --ink: #1c1c1e;
+  --ink-muted: #6e6e76;
+  --ink-faint: #9a9aa2;
+  --hairline: rgba(60, 60, 67, 0.12);
+
+  /* Glass material: translucent surface + backdrop-filter, content shows through */
+  --glass-bg: rgba(255, 255, 255, 0.68);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 1px 2px rgba(30, 30, 40, 0.04), 0 8px 24px rgba(30, 30, 45, 0.08), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  --nav-bg: rgba(248, 248, 251, 0.72);
+
+  /* ---- Per-tool accent palette (iOS system-color family, tinted for glass) ---- */
+  --accent-drsabcde: #ff3b30; /* primary survey: danger-led */
+  --accent-march: #ff9500; /* haemorrhage control */
+  --accent-vitals: #ff2d55; /* heart / vitals */
+  --accent-imist: #007aff; /* handover / information */
+  --accent-gcs: #af52de; /* neuro */
+  --accent-triage: #34c759; /* sorting / flow */
+  --accent-methane: #ffcc00; /* major incident */
+
+  /* ---- Motion tokens (emilkowalski/skills: emil-design-eng) ---- */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ---- Continuous ("squircle-like") corner radii ---- */
+  --radius-card: 28px;
+  --radius-pill: 999px;
+  --radius-badge: 14px;
 }
 
 .dark {
@@ -110,6 +144,34 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* ---- App surface & wallpaper (dark) ---- */
+  --app-bg-from: #0b0b10;
+  --app-bg-to: #000000;
+  --ink: #f5f5f7;
+  --ink-muted: #98989f;
+  --ink-faint: #6c6c74;
+  --hairline: rgba(255, 255, 255, 0.1);
+
+  --glass-bg: rgba(28, 28, 32, 0.6);
+  --glass-bg-strong: rgba(32, 32, 36, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 28px rgba(0, 0, 0, 0.5);
+  --nav-bg: rgba(10, 10, 12, 0.6);
+
+  /* Slightly brighter in the dark so accents still read against near-black glass */
+  --accent-drsabcde: #ff453a;
+  --accent-march: #ff9f0a;
+  --accent-vitals: #ff375f;
+  --accent-imist: #0a84ff;
+  --accent-gcs: #bf5af2;
+  --accent-triage: #30d158;
+  --accent-methane: #ffd60a;
+}
+
+.backdrop-blur-glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 @layer base {
@@ -117,6 +179,90 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    color: var(--ink);
+    background: radial-gradient(120% 100% at 50% 0%, var(--app-bg-from) 0%, var(--app-bg-to) 55%);
+    background-attachment: fixed;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Ease a theme switch instead of an abrupt brightness jump (apple-design §14) */
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  .glass,
+  .glass-strong {
+    transition: background-color 200ms var(--ease-in-out), color 200ms var(--ease-in-out), border-color 200ms var(--ease-in-out);
+  }
+}
+
+/* View Transitions: iOS-style push/pop navigation (apple-design §7: symmetric enter/exit paths) */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 260ms;
+    animation-timing-function: var(--ease-in-out);
+    mix-blend-mode: normal;
+  }
+
+  :root[data-transition-direction="forward"]::view-transition-old(root) {
+    animation-name: rc-slide-out-left;
+    z-index: 1;
+  }
+  :root[data-transition-direction="forward"]::view-transition-new(root) {
+    animation-name: rc-slide-in-right;
+    z-index: 2;
+  }
+  :root[data-transition-direction="back"]::view-transition-old(root) {
+    animation-name: rc-slide-out-right;
+    z-index: 2;
+  }
+  :root[data-transition-direction="back"]::view-transition-new(root) {
+    animation-name: rc-slide-in-left;
+    z-index: 1;
+  }
+
+  @keyframes rc-slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes rc-slide-out-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-25%); }
+  }
+  @keyframes rc-slide-in-left {
+    from { transform: translateX(-25%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes rc-slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-bg: #f2f2f4;
+    --glass-bg-strong: #f2f2f4;
+    --nav-bg: #f2f2f4;
+  }
+  .dark {
+    --glass-bg: #1c1c1e;
+    --glass-bg-strong: #1c1c1e;
+    --nav-bg: #1c1c1e;
+  }
+  .backdrop-blur-glass {
+    backdrop-filter: none !important;
   }
 }
