@@ -20,11 +20,10 @@ export default function VitalsPage() {
       <DetailHeader
         title={tool.title}
         backHref="/"
-        icon={<tool.icon size={15} strokeWidth={2.5} />}
-        accent={tool.accent}
+        icon={<tool.icon size={14} strokeWidth={2} />}
         count={vitals.length}
       />
-      <div className="mx-auto max-w-md px-4 pb-10 pt-4">
+      <div className="mx-auto max-w-md px-4 pb-16 pt-6">
         <Panel>
           {vitals.map((v, idx) => (
             <div
@@ -32,16 +31,16 @@ export default function VitalsPage() {
               className="px-4 py-4"
               style={{ borderBottom: idx === vitals.length - 1 ? undefined : '1px solid var(--hairline)' }}
             >
-              <div className="text-[12px] font-semibold uppercase tracking-wide" style={{ color: 'var(--ink-faint)' }}>
+              <div className="text-caption font-bold uppercase" style={{ color: 'var(--ink-muted)', letterSpacing: '0.05em' }}>
                 {v.label}
               </div>
-              <div className="mt-0.5 text-[22px] font-bold tabular-nums" style={{ color: tool.accent }}>
+              <div className="font-mono mt-0.5 text-[22px]" style={{ color: 'var(--ink)' }}>
                 {v.value}
               </div>
             </div>
           ))}
         </Panel>
-        <p className="mt-3 px-1 text-xs" style={{ color: 'var(--ink-faint)' }}>
+        <p className="mt-4 px-1 text-caption" style={{ color: 'var(--ink-faint)' }}>
           Resting adult. Interpret against the patient&apos;s baseline.
         </p>
       </div>

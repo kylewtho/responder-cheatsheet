@@ -12,10 +12,10 @@ const sieve = [
 ];
 
 const categories = [
-  { color: '#ff3b30', label: 'P1 – Immediate' },
-  { color: '#ffcc00', label: 'P2 – Urgent' },
-  { color: '#34c759', label: 'P3 – Delayed' },
-  { color: '#007aff', label: 'Expectant' },
+  { color: 'var(--color-error)', label: 'P1 – Immediate' },
+  { color: 'var(--color-warning)', label: 'P2 – Urgent' },
+  { color: 'var(--color-success)', label: 'P3 – Delayed' },
+  { color: 'var(--color-info)', label: 'Expectant' },
   { color: 'var(--ink)', label: 'Deceased' },
 ];
 
@@ -26,22 +26,21 @@ export default function TriagePage() {
       <DetailHeader
         title={tool.title}
         backHref="/"
-        icon={<tool.icon size={15} strokeWidth={2.5} />}
-        accent={tool.accent}
+        icon={<tool.icon size={14} strokeWidth={2} />}
         count={sieve.length}
       />
-      <div className="mx-auto max-w-md space-y-5 px-4 pb-10 pt-4">
-        <List items={sieve} accent={tool.accent} />
+      <div className="mx-auto max-w-md space-y-8 px-4 pb-16 pt-6">
+        <List items={sieve} />
 
-        <Panel className="px-4 py-3.5" strong>
-          <div className="mb-2 text-[13px] font-semibold uppercase tracking-wide" style={{ color: 'var(--ink-muted)' }}>
+        <Panel className="px-4 py-4">
+          <div className="mb-3 text-caption font-bold uppercase" style={{ color: 'var(--ink-muted)', letterSpacing: '0.05em' }}>
             Categories
           </div>
-          <div className="grid grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-2 gap-3">
             {categories.map((c) => (
               <div key={c.label} className="flex items-center gap-2">
-                <span className="inline-block h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: c.color }} />
-                <span className="text-[14px]" style={{ color: 'var(--ink)' }}>
+                <span className="inline-block h-2.5 w-2.5 shrink-0" style={{ background: c.color }} />
+                <span className="text-body-sm" style={{ color: 'var(--ink)' }}>
                   {c.label}
                 </span>
               </div>

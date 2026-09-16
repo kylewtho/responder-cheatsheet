@@ -85,15 +85,12 @@ export function LocationCard() {
       role={locError ? 'button' : undefined}
       tabIndex={locError ? 0 : undefined}
     >
-      <div className="flex items-center gap-4 px-4 py-3.5">
-        <span
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
-          style={{ background: 'color-mix(in srgb, var(--accent-imist) 16%, transparent)', color: 'var(--accent-imist)' }}
-        >
-          {!isOnline ? <WifiOff size={20} /> : <MapPin size={20} />}
+      <div className="flex items-center gap-4 px-4 py-4">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
+          {!isOnline ? <WifiOff size={20} strokeWidth={2} /> : <MapPin size={20} strokeWidth={2} />}
         </span>
         <div className="min-w-0 flex-1">
-          <div className="text-[16px] font-semibold" style={{ color: 'var(--ink)' }}>
+          <div className="text-body-sm font-bold" style={{ color: 'var(--ink)' }}>
             {!isOnline
               ? 'Offline'
               : locLoading
@@ -102,7 +99,7 @@ export function LocationCard() {
           </div>
 
           {!isOnline ? (
-            <div className="text-[13.5px]" style={{ color: 'var(--ink-muted)' }}>
+            <div className="text-caption" style={{ color: 'var(--ink-muted)' }}>
               No connection. Mnemonic pages still work offline.
             </div>
           ) : locLoading ? null : location ? (
@@ -114,14 +111,14 @@ export function LocationCard() {
                     handleCopyW3W();
                   }}
                   type="button"
-                  className="mt-0.5 font-mono text-[13.5px] underline"
-                  style={{ color: 'var(--accent-imist)' }}
+                  className="font-mono mt-0.5 text-caption underline"
+                  style={{ color: 'var(--ink)' }}
                 >
                   {'///'}
                   {w3w}
                 </button>
               )}
-              <div className="mt-0.5 truncate text-[13.5px]" style={{ color: 'var(--ink-muted)' }}>
+              <div className="font-mono mt-0.5 truncate text-caption" style={{ color: 'var(--ink-muted)' }}>
                 {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
                 <a
                   href={`https://maps.google.com/?q=${location.lat},${location.lng}`}
@@ -129,14 +126,14 @@ export function LocationCard() {
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   className="ml-2 underline"
-                  style={{ color: 'var(--accent-imist)' }}
+                  style={{ color: 'var(--ink)' }}
                 >
                   Open in Maps
                 </a>
               </div>
             </>
           ) : locError ? (
-            <div className="text-[13.5px]" style={{ color: 'var(--accent-drsabcde)' }}>
+            <div className="text-caption" style={{ color: 'var(--color-error)' }}>
               {locError}. Tap to try again.
             </div>
           ) : null}

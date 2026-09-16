@@ -20,23 +20,16 @@ function ToolRow({ tool, isLast }: { tool: Tool; isLast: boolean }) {
     <TransitionLink
       direction="forward"
       href={`./${tool.key}`}
-      className="flex items-center gap-4 px-4 py-4 transition-transform active:scale-[0.98]"
+      className="flex h-12 items-center gap-3 px-4 text-[var(--ink)] transition-colors hoverable:hover:bg-[var(--gray-divider)] active:bg-[var(--color-primary)] active:text-[var(--color-secondary)]"
       style={{
         borderBottom: isLast ? undefined : '1px solid var(--hairline)',
         transitionDuration: '150ms',
         transitionTimingFunction: 'var(--ease-out)',
       }}
     >
-      <span
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-badge)]"
-        style={{ background: `color-mix(in srgb, ${tool.accent} 12%, transparent)`, color: tool.accent }}
-      >
-        <Icon size={20} strokeWidth={2.25} />
-      </span>
-      <span className="min-w-0 flex-1 truncate text-[17px] font-semibold" style={{ color: 'var(--ink)' }}>
-        {tool.title}
-      </span>
-      <ChevronRight size={18} style={{ color: 'var(--ink-faint)' }} />
+      <Icon size={18} strokeWidth={2} className="shrink-0" />
+      <span className="min-w-0 flex-1 truncate text-body-sm">{tool.title}</span>
+      <ChevronRight size={16} strokeWidth={2} className="shrink-0 opacity-50" />
     </TransitionLink>
   );
 }

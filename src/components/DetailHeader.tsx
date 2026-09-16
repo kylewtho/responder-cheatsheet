@@ -8,11 +8,10 @@ interface DetailHeaderProps {
   title: string;
   backHref: string;
   icon: React.ReactNode;
-  accent: string;
   count?: number;
 }
 
-export default function DetailHeader({ title, backHref, icon, accent, count }: DetailHeaderProps) {
+export default function DetailHeader({ title, backHref, icon, count }: DetailHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,12 +23,12 @@ export default function DetailHeader({ title, backHref, icon, accent, count }: D
 
   return (
     <div
-      className="backdrop-blur-glass sticky top-0 z-20 flex h-16 items-center px-3 transition-[border-color]"
+      className="sticky top-0 z-20 flex h-16 items-center px-4 transition-[border-color]"
       style={{
         paddingTop: 'env(safe-area-inset-top, 0px)',
-        background: 'var(--nav-bg)',
-        borderBottom: scrolled ? '1px solid var(--hairline)' : '1px solid transparent',
-        transitionDuration: '200ms',
+        background: 'var(--surface-base)',
+        borderBottom: scrolled ? '1px solid var(--gray-card-border)' : '1px solid transparent',
+        transitionDuration: '150ms',
         transitionTimingFunction: 'var(--ease-out)',
       }}
     >
@@ -37,30 +36,27 @@ export default function DetailHeader({ title, backHref, icon, accent, count }: D
         direction="back"
         href={backHref}
         aria-label="Back"
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-transform active:scale-[0.9]"
-        style={{ color: 'var(--accent-imist)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
+        className="flex h-8 w-8 shrink-0 items-center justify-center transition-opacity active:opacity-60"
+        style={{ color: 'var(--ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
       >
-        <ChevronLeft size={24} strokeWidth={2.25} />
+        <ChevronLeft size={22} strokeWidth={2} />
       </TransitionLink>
 
       <div className="flex min-w-0 flex-1 items-center justify-center gap-2 px-1">
-        <span
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[8px]"
-          style={{ background: `color-mix(in srgb, ${accent} 16%, transparent)`, color: accent }}
-        >
+        <span className="flex h-4 w-4 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
           {icon}
         </span>
-        <h1 className="truncate text-[17px] font-semibold" style={{ color: 'var(--ink)' }}>
+        <h1 className="truncate text-h3 font-semibold" style={{ color: 'var(--ink)' }}>
           {title}
         </h1>
       </div>
 
       {count !== undefined ? (
-        <span className="w-9 shrink-0 text-right text-[13px] font-medium tabular-nums" style={{ color: 'var(--ink-faint)' }}>
+        <span className="font-mono w-8 shrink-0 text-right text-caption" style={{ color: 'var(--ink-muted)' }}>
           {count}
         </span>
       ) : (
-        <span className="w-9 shrink-0" />
+        <span className="w-8 shrink-0" />
       )}
     </div>
   );

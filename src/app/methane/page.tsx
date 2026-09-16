@@ -19,12 +19,11 @@ export default function MethanePage() {
       <DetailHeader
         title={tool.title}
         backHref="/"
-        icon={<tool.icon size={15} strokeWidth={2.5} />}
-        accent={tool.accent}
+        icon={<tool.icon size={14} strokeWidth={2} />}
         count={methane.length}
       />
-      <div className="mx-auto max-w-md px-4 pb-10 pt-4">
-        <List items={methane} accent={tool.accent} />
+      <div className="mx-auto max-w-md px-4 pb-16 pt-6">
+        <List items={methane} />
       </div>
     </main>
   );

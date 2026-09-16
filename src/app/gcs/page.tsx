@@ -28,7 +28,7 @@ const motorResponse = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-2 px-1 text-[13px] font-semibold uppercase tracking-wide" style={{ color: 'var(--ink-muted)' }}>
+    <div className="mb-2 px-1 text-caption font-bold uppercase" style={{ color: 'var(--ink-muted)', letterSpacing: '0.05em' }}>
       {children}
     </div>
   );
@@ -38,25 +38,25 @@ export default function GCSPage() {
   const tool = getTool('gcs')!;
   return (
     <main className="min-h-screen">
-      <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={15} strokeWidth={2.5} />} accent={tool.accent} />
-      <div className="mx-auto max-w-md space-y-6 px-4 pb-10 pt-4">
-        <p className="px-1 text-[13.5px]" style={{ color: 'var(--ink-muted)' }}>
+      <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={14} strokeWidth={2} />} />
+      <div className="mx-auto max-w-md space-y-8 px-4 pb-16 pt-6">
+        <p className="px-1 text-body-sm font-light" style={{ color: 'var(--ink-muted)' }}>
           Sum for a total out of 15 (minimum 3).
         </p>
 
         <div>
           <SectionLabel>{'Eye Opening · max 4'}</SectionLabel>
-          <List items={eyeOpening} accent={tool.accent} />
+          <List items={eyeOpening} />
         </div>
 
         <div>
           <SectionLabel>{'Verbal Response · max 5'}</SectionLabel>
-          <List items={verbalResponse} accent={tool.accent} />
+          <List items={verbalResponse} />
         </div>
 
         <div>
           <SectionLabel>{'Motor Response · max 6'}</SectionLabel>
-          <List items={motorResponse} accent={tool.accent} />
+          <List items={motorResponse} />
         </div>
       </div>
     </main>

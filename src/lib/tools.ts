@@ -13,17 +13,16 @@ export interface Tool {
   key: string;
   title: string;
   icon: LucideIcon;
-  accent: string;
 }
 
 export const tools: Tool[] = [
-  { key: 'drsabcde', title: 'DRSABCDE', icon: Stethoscope, accent: 'var(--accent-drsabcde)' },
-  { key: 'march', title: 'MARCH', icon: Droplets, accent: 'var(--accent-march)' },
-  { key: 'vitals', title: 'Vital Signs', icon: HeartPulse, accent: 'var(--accent-vitals)' },
-  { key: 'imist', title: 'IMIST-AMBO', icon: ClipboardList, accent: 'var(--accent-imist)' },
-  { key: 'gcs', title: 'Glasgow Coma Scale', icon: Brain, accent: 'var(--accent-gcs)' },
-  { key: 'triage', title: 'Triage Sieve', icon: TrafficCone, accent: 'var(--accent-triage)' },
-  { key: 'methane', title: 'METHANE', icon: Flame, accent: 'var(--accent-methane)' },
+  { key: 'drsabcde', title: 'DRSABCDE', icon: Stethoscope },
+  { key: 'march', title: 'MARCH', icon: Droplets },
+  { key: 'vitals', title: 'Vital Signs', icon: HeartPulse },
+  { key: 'imist', title: 'IMIST-AMBO', icon: ClipboardList },
+  { key: 'gcs', title: 'Glasgow Coma Scale', icon: Brain },
+  { key: 'triage', title: 'Triage Sieve', icon: TrafficCone },
+  { key: 'methane', title: 'METHANE', icon: Flame },
 ];
 
 export function getTool(key: string): Tool | undefined {

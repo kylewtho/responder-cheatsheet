@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <AppShell title="First Responder">
-        <div className="mx-auto max-w-md space-y-5 px-4 pb-10 pt-4">
+        <div className="mx-auto max-w-md space-y-8 px-4 pb-16 pt-8">
           <LocationCard />
           <ToolList tools={tools} />
         </div>

@@ -10,7 +10,7 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <span className="h-9 w-9 shrink-0" aria-hidden />;
+    return <span className="h-8 w-8 shrink-0" aria-hidden />;
   }
 
   const isDark = resolvedTheme === 'dark';
@@ -20,35 +20,11 @@ export function ThemeToggle() {
       type="button"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border transition-transform active:scale-[0.92]"
-      style={{
-        background: 'var(--surface-strong)',
-        borderColor: 'var(--hairline)',
-        color: 'var(--ink)',
-        transitionDuration: '150ms',
-        transitionTimingFunction: 'var(--ease-out)',
-      }}
+      className="relative flex h-8 w-8 shrink-0 items-center justify-center transition-opacity active:opacity-60"
+      style={{ color: 'var(--ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
     >
-      <Sun
-        size={17}
-        className="absolute transition-all"
-        style={{
-          transitionDuration: '200ms',
-          transitionTimingFunction: 'var(--ease-out)',
-          opacity: isDark ? 0 : 1,
-          transform: isDark ? 'scale(0.5) rotate(-90deg)' : 'scale(1) rotate(0deg)',
-        }}
-      />
-      <Moon
-        size={16}
-        className="absolute transition-all"
-        style={{
-          transitionDuration: '200ms',
-          transitionTimingFunction: 'var(--ease-out)',
-          opacity: isDark ? 1 : 0,
-          transform: isDark ? 'scale(1) rotate(0deg)' : 'scale(0.5) rotate(90deg)',
-        }}
-      />
+      <Sun size={18} strokeWidth={2} className="absolute transition-opacity" style={{ transitionDuration: '150ms', opacity: isDark ? 0 : 1 }} />
+      <Moon size={17} strokeWidth={2} className="absolute transition-opacity" style={{ transitionDuration: '150ms', opacity: isDark ? 1 : 0 }} />
     </button>
   );
 }

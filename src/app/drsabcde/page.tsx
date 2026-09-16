@@ -20,12 +20,11 @@ export default function DRSABCDEPage() {
       <DetailHeader
         title={tool.title}
         backHref="/"
-        icon={<tool.icon size={15} strokeWidth={2.5} />}
-        accent={tool.accent}
+        icon={<tool.icon size={14} strokeWidth={2} />}
         count={drsabcde.length}
       />
-      <div className="mx-auto max-w-md px-4 pb-10 pt-4">
-        <List items={drsabcde} accent={tool.accent} />
+      <div className="mx-auto max-w-md px-4 pb-16 pt-6">
+        <List items={drsabcde} />
       </div>
     </main>
   );
