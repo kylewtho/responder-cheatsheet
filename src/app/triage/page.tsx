@@ -1,14 +1,14 @@
 import DetailHeader from '@/components/DetailHeader';
 import { List } from '@/components/List';
-import { GlassCard } from '@/components/GlassCard';
+import { Panel } from '@/components/Panel';
 import { getTool } from '@/lib/tools';
 
 const sieve = [
-  { badge: '1', title: 'Walking?', desc: 'If the patient can walk, they are Priority 3 (Delayed).' },
-  { badge: '2', title: 'Breathing?', desc: 'Open the airway. If still not breathing, the patient is Deceased.', tone: 'danger' as const },
-  { badge: '3', title: 'Respiratory Rate', desc: 'Breathing present. If RR is under 10 or over 29/min, Priority 1 (Immediate).' },
-  { badge: '4', title: 'Perfusion', desc: 'RR 10–29/min. If capillary refill is over 2 seconds, or the radial pulse is absent, Priority 1 (Immediate).' },
-  { badge: '5', title: 'Otherwise', desc: 'Capillary refill ≤2 seconds and radial pulse present: Priority 2 (Urgent).' },
+  { badge: '1', title: 'Walking?', desc: 'Can walk → Priority 3 (Delayed).' },
+  { badge: '2', title: 'Breathing?', desc: 'Open airway. Still not breathing → Deceased.', tone: 'danger' as const },
+  { badge: '3', title: 'Respiratory Rate', desc: 'RR <10 or >29/min → Priority 1 (Immediate).' },
+  { badge: '4', title: 'Perfusion', desc: 'Cap refill >2s or no radial pulse → Priority 1 (Immediate).' },
+  { badge: '5', title: 'Otherwise', desc: 'Cap refill ≤2s, pulse present → Priority 2 (Urgent).' },
 ];
 
 const categories = [
@@ -23,11 +23,17 @@ export default function TriagePage() {
   const tool = getTool('triage')!;
   return (
     <main className="min-h-screen">
-      <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={15} strokeWidth={2.5} />} accent={tool.accent} />
+      <DetailHeader
+        title={tool.title}
+        backHref="/"
+        icon={<tool.icon size={15} strokeWidth={2.5} />}
+        accent={tool.accent}
+        count={sieve.length}
+      />
       <div className="mx-auto max-w-md space-y-5 px-4 pb-10 pt-4">
         <List items={sieve} accent={tool.accent} />
 
-        <GlassCard className="px-4 py-3.5" strong>
+        <Panel className="px-4 py-3.5" strong>
           <div className="mb-2 text-[13px] font-semibold uppercase tracking-wide" style={{ color: 'var(--ink-muted)' }}>
             Categories
           </div>
@@ -41,7 +47,7 @@ export default function TriagePage() {
               </div>
             ))}
           </div>
-        </GlassCard>
+        </Panel>
       </div>
     </main>
   );

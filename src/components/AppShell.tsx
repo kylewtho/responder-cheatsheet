@@ -2,16 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
-import { SearchField } from './SearchField';
 
 interface AppShellProps {
   title: string;
-  search: string;
-  onSearchChange: (value: string) => void;
   children: React.ReactNode;
 }
 
-export function AppShell({ title, search, onSearchChange, children }: AppShellProps) {
+export function AppShell({ title, children }: AppShellProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
@@ -24,7 +21,7 @@ export function AppShell({ title, search, onSearchChange, children }: AppShellPr
   return (
     <>
       <div
-        className="backdrop-blur-glass sticky top-0 z-20 px-4"
+        className="backdrop-blur-glass sticky top-0 z-20 px-4 pb-3"
         style={{
           paddingTop: 'env(safe-area-inset-top, 0px)',
           background: 'var(--nav-bg)',
@@ -60,7 +57,7 @@ export function AppShell({ title, search, onSearchChange, children }: AppShellPr
         >
           <div className="overflow-hidden">
             <h1
-              className="origin-left pb-1 font-bold transition-[opacity,transform]"
+              className="origin-left font-bold transition-[opacity,transform]"
               style={{
                 color: 'var(--ink)',
                 fontSize: '32px',
@@ -74,10 +71,6 @@ export function AppShell({ title, search, onSearchChange, children }: AppShellPr
               {title}
             </h1>
           </div>
-        </div>
-
-        <div className="pb-3">
-          <SearchField value={search} onChange={onSearchChange} />
         </div>
       </div>
       {children}

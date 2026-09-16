@@ -20,10 +20,10 @@ export function ThemeToggle() {
       type="button"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="backdrop-blur-glass relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border shadow-[var(--glass-shadow)] transition-transform active:scale-[0.92]"
+      className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border transition-transform active:scale-[0.92]"
       style={{
-        background: 'var(--glass-bg-strong)',
-        borderColor: 'var(--glass-border)',
+        background: 'var(--surface-strong)',
+        borderColor: 'var(--hairline)',
         color: 'var(--ink)',
         transitionDuration: '150ms',
         transitionTimingFunction: 'var(--ease-out)',

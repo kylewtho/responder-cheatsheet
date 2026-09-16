@@ -15,7 +15,13 @@ export default function MARCHPage() {
   const tool = getTool('march')!;
   return (
     <main className="min-h-screen">
-      <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={15} strokeWidth={2.5} />} accent={tool.accent} />
+      <DetailHeader
+        title={tool.title}
+        backHref="/"
+        icon={<tool.icon size={15} strokeWidth={2.5} />}
+        accent={tool.accent}
+        count={march.length}
+      />
       <div className="mx-auto max-w-md px-4 pb-10 pt-4">
         <List items={march} accent={tool.accent} />
       </div>

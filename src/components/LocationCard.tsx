@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { MapPin, WifiOff } from 'lucide-react';
 import { toast } from 'sonner';
-import { GlassCard } from './GlassCard';
+import { Panel } from './Panel';
 
 export function LocationCard() {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -79,7 +79,7 @@ export function LocationCard() {
   };
 
   return (
-    <GlassCard
+    <Panel
       className={locError ? 'cursor-pointer' : undefined}
       onClick={locError ? getLocation : undefined}
       role={locError ? 'button' : undefined}
@@ -142,6 +142,6 @@ export function LocationCard() {
           ) : null}
         </div>
       </div>
-    </GlassCard>
+    </Panel>
   );
 }

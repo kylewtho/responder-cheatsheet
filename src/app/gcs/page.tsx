@@ -3,27 +3,27 @@ import { List } from '@/components/List';
 import { getTool } from '@/lib/tools';
 
 const eyeOpening = [
-  { badge: '4', title: 'Spontaneous', desc: 'Opens eyes on their own.' },
-  { badge: '3', title: 'To Voice', desc: 'Opens eyes when spoken to.' },
-  { badge: '2', title: 'To Pain', desc: 'Opens eyes only in response to a painful stimulus.' },
-  { badge: '1', title: 'None', desc: 'No eye opening.' },
+  { badge: '4', title: 'Spontaneous' },
+  { badge: '3', title: 'To Voice' },
+  { badge: '2', title: 'To Pain' },
+  { badge: '1', title: 'None' },
 ];
 
 const verbalResponse = [
-  { badge: '5', title: 'Oriented', desc: 'Knows who, where, and when.' },
-  { badge: '4', title: 'Confused', desc: 'Converses, but is disoriented.' },
-  { badge: '3', title: 'Inappropriate Words', desc: 'Random or exclamatory words, no conversation.' },
-  { badge: '2', title: 'Incomprehensible Sounds', desc: 'Moaning, no recognizable words.' },
-  { badge: '1', title: 'None', desc: 'No verbal response.' },
+  { badge: '5', title: 'Oriented' },
+  { badge: '4', title: 'Confused' },
+  { badge: '3', title: 'Inappropriate Words', desc: 'No conversation.' },
+  { badge: '2', title: 'Incomprehensible Sounds', desc: 'Moaning, no words.' },
+  { badge: '1', title: 'None' },
 ];
 
 const motorResponse = [
-  { badge: '6', title: 'Obeys Commands', desc: 'Follows simple instructions.' },
-  { badge: '5', title: 'Localizes Pain', desc: 'Purposeful movement toward painful stimulus.' },
-  { badge: '4', title: 'Withdraws from Pain', desc: 'Pulls away from painful stimulus.' },
+  { badge: '6', title: 'Obeys Commands' },
+  { badge: '5', title: 'Localizes Pain' },
+  { badge: '4', title: 'Withdraws from Pain' },
   { badge: '3', title: 'Abnormal Flexion', desc: 'Decorticate posturing.' },
   { badge: '2', title: 'Abnormal Extension', desc: 'Decerebrate posturing.' },
-  { badge: '1', title: 'None', desc: 'No motor response.' },
+  { badge: '1', title: 'None' },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -41,21 +41,21 @@ export default function GCSPage() {
       <DetailHeader title={tool.title} backHref="/" icon={<tool.icon size={15} strokeWidth={2.5} />} accent={tool.accent} />
       <div className="mx-auto max-w-md space-y-6 px-4 pb-10 pt-4">
         <p className="px-1 text-[13.5px]" style={{ color: 'var(--ink-muted)' }}>
-          Score each category and sum for a total out of 15 (minimum 3).
+          Sum for a total out of 15 (minimum 3).
         </p>
 
         <div>
-          <SectionLabel>{'Eye Opening (E) · max 4'}</SectionLabel>
+          <SectionLabel>{'Eye Opening · max 4'}</SectionLabel>
           <List items={eyeOpening} accent={tool.accent} />
         </div>
 
         <div>
-          <SectionLabel>{'Verbal Response (V) · max 5'}</SectionLabel>
+          <SectionLabel>{'Verbal Response · max 5'}</SectionLabel>
           <List items={verbalResponse} accent={tool.accent} />
         </div>
 
         <div>
-          <SectionLabel>{'Motor Response (M) · max 6'}</SectionLabel>
+          <SectionLabel>{'Motor Response · max 6'}</SectionLabel>
           <List items={motorResponse} accent={tool.accent} />
         </div>
       </div>

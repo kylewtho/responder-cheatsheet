@@ -1,11 +1,10 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
-import { GlassCard } from './GlassCard';
+import { Panel } from './Panel';
 
 export interface ListItem {
   badge: string;
   title: string;
-  desc: string;
+  desc?: string;
   tone?: 'danger';
 }
 
@@ -16,7 +15,7 @@ interface ListProps {
 
 export function List({ items, accent }: ListProps) {
   return (
-    <GlassCard>
+    <Panel>
       {items.map((item, idx) => (
         <ListRow
           key={item.badge + item.title}
@@ -25,7 +24,7 @@ export function List({ items, accent }: ListProps) {
           isLast={idx === items.length - 1}
         />
       ))}
-    </GlassCard>
+    </Panel>
   );
 }
 
@@ -33,22 +32,24 @@ function ListRow({ item, accent, isLast }: { item: ListItem; accent: string; isL
   const color = item.tone === 'danger' ? 'var(--accent-drsabcde)' : accent;
   return (
     <div
-      className={cn('flex items-start gap-4 px-4 py-4', !isLast && 'border-b')}
-      style={{ borderColor: 'var(--hairline)' }}
+      className="flex items-baseline gap-4 px-4 py-5"
+      style={{ borderBottom: isLast ? undefined : '1px solid var(--hairline)' }}
     >
       <span
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-badge)] text-[15px] font-bold select-none"
-        style={{ background: `color-mix(in srgb, ${color} 16%, transparent)`, color }}
+        className="w-10 shrink-0 text-right text-[26px] font-bold leading-none tabular-nums select-none"
+        style={{ color }}
       >
         {item.badge}
       </span>
-      <div className="min-w-0 flex-1 pt-0.5">
-        <div className="text-[16px] font-semibold" style={{ color: 'var(--ink)' }}>
+      <div className="min-w-0 flex-1">
+        <div className="text-[16px] font-semibold leading-snug" style={{ color: 'var(--ink)' }}>
           {item.title}
         </div>
-        <div className="mt-0.5 text-[13.5px] leading-snug" style={{ color: 'var(--ink-muted)' }}>
-          {item.desc}
-        </div>
+        {item.desc && (
+          <div className="mt-0.5 text-[13.5px] leading-snug" style={{ color: 'var(--ink-muted)' }}>
+            {item.desc}
+          </div>
+        )}
       </div>
     </div>
   );
