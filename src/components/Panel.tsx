@@ -8,10 +8,10 @@ interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Panel({ className, strong, children, ...props }: PanelProps) {
   return (
     <div
-      className={cn('overflow-hidden border', className)}
+      className={cn('overflow-hidden rounded-lg', className)}
       style={{
         background: strong ? 'var(--surface-strong)' : 'var(--surface)',
-        borderColor: 'var(--gray-card-border)',
+        boxShadow: 'var(--shadow-card)',
       }}
       {...props}
     >

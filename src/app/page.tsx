@@ -1,15 +1,16 @@
 import { AppShell } from '@/components/AppShell';
 import { LocationCard } from '@/components/LocationCard';
-import { ToolList } from '@/components/ToolList';
-import { tools } from '@/lib/tools';
+import { TopicBrowser } from '@/components/TopicBrowser';
+import { getAllTopics } from '@/lib/content';
 
 export default function Home() {
+  const topics = getAllTopics();
   return (
     <main className="min-h-screen">
-      <AppShell title="First Responder">
-        <div className="mx-auto max-w-md space-y-8 px-4 pb-16 pt-8">
+      <AppShell title="ResQCard">
+        <div className="mx-auto max-w-md space-y-6 px-4 pb-16 pt-6">
           <LocationCard />
-          <ToolList tools={tools} />
+          <TopicBrowser topics={topics} />
         </div>
       </AppShell>
     </main>

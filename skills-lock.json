@@ -43,11 +43,23 @@
       "skillPath": "skills/find-animation-opportunities/SKILL.md",
       "computedHash": "465d087c41768e4f14ed640dd049036009f613feb55baaa5831b68b33178f9d2"
     },
+    "finesse-ui": {
+      "source": "mouse-lin/finesse-skill",
+      "sourceType": "github",
+      "skillPath": "skills/finesse-ui/SKILL.md",
+      "computedHash": "f45e245159f469c66ae0d55ef6809eff31082df1e8a4fe0682f3d28795b56ab7"
+    },
     "improve-animations": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/improve-animations/SKILL.md",
       "computedHash": "524ea241e41d58bbdd8e288700fe24f5725e2a2f3ae7186ad7cebf9055058356"
+    },
+    "minimalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/minimalist-skill/SKILL.md",
+      "computedHash": "08873a3131d3be27bef9bf3304b310b16b44ca6e3561aebe532797be3443f6bd"
     },
     "mobile-native": {
       "source": "emilkowalski/skills",
