@@ -30,10 +30,7 @@ export function AppShell({ title, children }: AppShellProps) {
           transitionTimingFunction: 'var(--ease-out)',
         }}
       >
-        <h1
-          className="text-hero font-normal"
-          style={{ color: 'var(--ink)', letterSpacing: '-0.01em', fontFamily: 'var(--font-serif)' }}
-        >
+        <h1 className="text-h1 font-bold" style={{ color: 'var(--ink)', letterSpacing: '-0.02em' }}>
           {title}
         </h1>
         <ThemeToggle />

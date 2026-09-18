@@ -86,11 +86,8 @@ export function LocationCard() {
       tabIndex={locError ? 0 : undefined}
     >
       <div className="flex items-center gap-4 px-4 py-4">
-        <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md"
-          style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}
-        >
-          {!isOnline ? <WifiOff size={18} strokeWidth={2} /> : <MapPin size={18} strokeWidth={2} />}
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
+          {!isOnline ? <WifiOff size={20} strokeWidth={2} /> : <MapPin size={20} strokeWidth={2} />}
         </span>
         <div className="min-w-0 flex-1">
           <div className="text-body-sm font-bold" style={{ color: 'var(--ink)' }}>
@@ -115,7 +112,7 @@ export function LocationCard() {
                   }}
                   type="button"
                   className="font-mono mt-0.5 text-caption underline"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'var(--ink)' }}
                 >
                   {'///'}
                   {w3w}
@@ -129,7 +126,7 @@ export function LocationCard() {
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   className="ml-2 underline"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'var(--ink)' }}
                 >
                   Open in Maps
                 </a>

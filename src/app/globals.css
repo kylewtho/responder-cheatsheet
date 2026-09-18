@@ -7,30 +7,29 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist);
-  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-ibm-plex-mono);
   --color-border: var(--border);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 14px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 
-  /* ---- Product type scale (finesse-ui product-ui.md §8: fixed sizes, not clamp()) ---- */
-  --text-hero: 28px;
-  --text-hero--line-height: 1.15;
-  --text-h1: 24px;
-  --text-h1--line-height: 1.2;
-  --text-h2: 20px;
-  --text-h2--line-height: 1.25;
-  --text-h3: 18px;
+  /* ---- StudioBlank type scale ---- */
+  --text-hero: 64px;
+  --text-hero--line-height: 1.05;
+  --text-h1: 40px;
+  --text-h1--line-height: 1.1;
+  --text-h2: 28px;
+  --text-h2--line-height: 1.2;
+  --text-h3: 20px;
   --text-h3--line-height: 1.3;
   --text-body: 16px;
-  --text-body--line-height: 1.6;
+  --text-body--line-height: 1.65;
   --text-body-sm: 14px;
-  --text-body-sm--line-height: 1.55;
+  --text-body-sm--line-height: 1.6;
   --text-caption: 12px;
   --text-caption--line-height: 1.5;
   --text-mono-sb: 13px;
@@ -38,30 +37,35 @@
 }
 
 :root {
-  --radius: 12px;
+  --radius: 0px;
 
-  /* ---- Product palette (light): warm stone-tinted neutrals, one branded accent ---- */
-  --color-primary: #171310;
-  --color-secondary: #fbfaf8;
-  --color-tertiary: #d8d2c8;
-  /* Page tint is mixed FROM the accent, not a reflex "safe cream" default (impeccable: cream-palette) */
-  --surface-base: color-mix(in srgb, var(--accent) 5%, #fbfaf7);
-  --surface-inverse: #171310;
+  /* ---- StudioBlank spacing (base unit 16px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-8: 96px;
+  --space-10: 128px;
+
+  /* ---- StudioBlank palette (light) ---- */
+  --color-primary: #0a0a0a;
+  --color-secondary: #fafafa;
+  --color-tertiary: #d4d4d8;
+  --surface-base: #fafafa;
+  --surface-inverse: #0a0a0a;
   --color-success: #16a34a;
   --color-warning: #ca8a04;
   --color-error: #dc2626;
-  --color-info: #78716c;
+  --color-info: #71717a;
 
-  --accent: #c2410c;
-  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
-  --accent-ring: color-mix(in srgb, var(--accent) 35%, transparent);
-
-  --gray-card-border: #e8e3d9;
-  --gray-divider: #ece7dd;
-  --gray-muted-border: #b6ac9c;
+  --gray-card-border: #e5e5e5;
+  --gray-divider: #f4f4f5;
+  --gray-muted-border: #a1a1aa;
 
   --ink: var(--color-primary);
-  --ink-muted: #6b6255;
+  --ink-muted: var(--color-info);
   --ink-faint: var(--gray-muted-border);
   --hairline: var(--gray-divider);
 
@@ -75,50 +79,41 @@
   --card-foreground: var(--color-primary);
   --border: var(--gray-card-border);
 
-  /* Whisper shadow, tinted toward ink, not pure black (product-ui.md §0.1) */
-  --shadow-card: 0 1px 2px rgba(23, 19, 16, 0.03), 0 2px 10px rgba(23, 19, 16, 0.045);
-
   /* ---- Motion: barely perceptible, capped well under 200ms ---- */
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark {
-  /* ---- Product palette (dark): warm near-black, brighter accent ---- */
-  --color-primary: #f3efe7;
-  --color-secondary: #14110d;
-  --color-tertiary: #4a4438;
-  --surface-base: color-mix(in srgb, var(--accent) 7%, #0a0908);
-  --surface-inverse: #f3efe7;
+  /* ---- StudioBlank palette (dark = the system's own inversion) ---- */
+  --color-primary: #fafafa;
+  --color-secondary: #0a0a0a;
+  --color-tertiary: #3f3f46;
+  --surface-base: #0a0a0a;
+  --surface-inverse: #fafafa;
   --color-success: #22c55e;
   --color-warning: #eab308;
   --color-error: #ef4444;
-  --color-info: #a39b8f;
+  --color-info: #a1a1aa;
 
-  --accent: #fb923c;
-  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
-  --accent-ring: color-mix(in srgb, var(--accent) 40%, transparent);
-
-  --gray-card-border: #2a251d;
-  --gray-divider: #211d17;
-  --gray-muted-border: #5c5344;
+  --gray-card-border: #27272a;
+  --gray-divider: #1c1c1f;
+  --gray-muted-border: #52525b;
 
   --ink: var(--color-primary);
-  --ink-muted: #a39b8f;
+  --ink-muted: var(--color-info);
   --ink-faint: var(--gray-muted-border);
   --hairline: var(--gray-divider);
 
-  --surface: #161310;
-  --surface-strong: #1c1813;
+  --surface: #111113;
+  --surface-strong: #151517;
   --app-bg: var(--surface-base);
 
   --background: var(--surface-base);
   --foreground: var(--color-primary);
-  --card: #161310;
+  --card: #111113;
   --card-foreground: var(--color-primary);
   --border: var(--gray-card-border);
-
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 4px 18px rgba(0, 0, 0, 0.4);
 }
 
 @layer base {
@@ -131,11 +126,10 @@
     background: var(--app-bg);
     -webkit-tap-highlight-color: transparent;
   }
-  /* Soft tinted focus ring (finesse-ui product-ui.md §0.1), not the browser default outline */
+  /* Focus states: 2px offset border instead of a box-shadow ring */
   :focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--accent-ring);
-    border-radius: var(--radius-sm);
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }
 
@@ -166,6 +160,7 @@
   color: var(--ink-muted);
   font-size: var(--text-body-sm);
   line-height: var(--text-body-sm--line-height);
+  font-weight: 300;
 }
 .prose-skill h2 {
   font-size: var(--text-h3);
@@ -183,6 +178,7 @@
   border-bottom: 1px solid var(--gray-divider);
   font-size: var(--text-body-sm);
   line-height: var(--text-body-sm--line-height);
+  font-weight: 300;
   color: var(--ink-muted);
 }
 .prose-skill li:last-child {
@@ -205,6 +201,7 @@
 .prose-skill td {
   font-family: var(--font-mono);
   font-size: var(--text-mono-sb);
+  font-weight: 400;
   color: var(--ink);
 }
 .prose-skill th {

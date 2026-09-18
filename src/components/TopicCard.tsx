@@ -9,13 +9,15 @@ export function TopicCard({ topic }: { topic: Topic }) {
     <TransitionLink
       direction="forward"
       href={`/${topic.slug}`}
-      className="flex flex-col gap-3 rounded-lg p-4 text-[var(--ink)] transition-transform hoverable:hover:-translate-y-0.5 active:scale-[0.98]"
-      style={{ background: 'var(--surface)', boxShadow: 'var(--shadow-card)' }}
+      className="flex flex-col gap-3 border p-4 text-[var(--ink)] transition-[border-color] hoverable:hover:border-[var(--color-primary)] active:opacity-70"
+      style={{
+        background: 'var(--surface)',
+        borderColor: 'var(--gray-card-border)',
+        transitionDuration: '150ms',
+        transitionTimingFunction: 'var(--ease-out)',
+      }}
     >
-      <span
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md"
-        style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}
-      >
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
         <Icon size={18} strokeWidth={2} />
       </span>
       <div className="min-w-0">

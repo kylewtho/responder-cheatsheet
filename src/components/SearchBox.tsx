@@ -11,8 +11,13 @@ interface SearchBoxProps {
 export function SearchBox({ value, onChange }: SearchBoxProps) {
   return (
     <div
-      className="flex items-center gap-2 rounded-md px-3 py-2.5"
-      style={{ background: 'var(--surface)', boxShadow: 'var(--shadow-card)' }}
+      className="flex h-10 items-center gap-2 border px-3 transition-[border-color] hoverable:hover:border-[var(--gray-muted-border)] has-[input:focus]:border-2 has-[input:focus]:border-[var(--color-primary)]"
+      style={{
+        background: 'var(--surface)',
+        borderColor: 'var(--color-tertiary)',
+        transitionDuration: '150ms',
+        transitionTimingFunction: 'var(--ease-out)',
+      }}
     >
       <Search size={16} strokeWidth={2} style={{ color: 'var(--ink-faint)' }} />
       <input
