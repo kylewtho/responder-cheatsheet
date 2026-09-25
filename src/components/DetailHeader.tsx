@@ -27,7 +27,7 @@ export default function DetailHeader({ title, backHref, icon, count }: DetailHea
       style={{
         paddingTop: 'env(safe-area-inset-top, 0px)',
         background: 'var(--surface-base)',
-        borderBottom: scrolled ? '1px solid var(--gray-card-border)' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid var(--header-border)' : '1px solid transparent',
         transitionDuration: '150ms',
         transitionTimingFunction: 'var(--ease-out)',
       }}
@@ -37,22 +37,22 @@ export default function DetailHeader({ title, backHref, icon, count }: DetailHea
         href={backHref}
         aria-label="Back"
         className="flex h-8 w-8 shrink-0 items-center justify-center transition-opacity active:opacity-60"
-        style={{ color: 'var(--accent)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
+        style={{ color: 'var(--page-ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
       >
         <ChevronLeft size={22} strokeWidth={2} />
       </TransitionLink>
 
       <div className="flex min-w-0 flex-1 items-center justify-center gap-2 px-1">
-        <span className="flex h-4 w-4 shrink-0 items-center justify-center" style={{ color: 'var(--accent)' }}>
+        <span className="flex h-4 w-4 shrink-0 items-center justify-center" style={{ color: 'var(--page-ink)' }}>
           {icon}
         </span>
-        <h1 className="truncate text-h3 font-semibold" style={{ color: 'var(--ink)' }}>
+        <h1 className="truncate text-h3 font-semibold" style={{ color: 'var(--page-ink)' }}>
           {title}
         </h1>
       </div>
 
       {count !== undefined ? (
-        <span className="font-mono w-8 shrink-0 text-right text-caption" style={{ color: 'var(--ink-muted)' }}>
+        <span className="font-mono w-8 shrink-0 text-right text-caption" style={{ color: 'var(--page-ink-muted)' }}>
           {count}
         </span>
       ) : (

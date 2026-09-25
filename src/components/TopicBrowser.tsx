@@ -25,7 +25,7 @@ export function TopicBrowser({ topics }: { topics: Topic[] }) {
         ))}
       </div>
       {filtered.length === 0 && (
-        <p className="text-body-sm" style={{ color: 'var(--ink-muted)' }}>
+        <p className="text-body-sm" style={{ color: 'var(--page-ink-muted)' }}>
           No topics match &ldquo;{query}&rdquo;.
         </p>
       )}

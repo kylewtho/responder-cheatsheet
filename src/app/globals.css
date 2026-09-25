@@ -49,15 +49,22 @@
   --space-8: 96px;
   --space-10: 128px;
 
-  /* ---- Brand: the one identity color, per the site's logo ---- */
-  --brand: #025d44;
+  /* ---- Brand: the one identity color, sampled directly from the logo/banner art ---- */
+  --brand: #025c42;
+  /* Text/icons that sit directly on --surface-base (headers, empty states) --
+     always light, since the page field is the brand green in both themes now. */
+  --page-ink: #fafafa;
+  --page-ink-muted: color-mix(in srgb, var(--brand) 5%, #f0f2f1);
+  /* The scroll-triggered header border needs to read against the green field,
+     not the neutral gray card borders use. */
+  --header-border: color-mix(in srgb, var(--brand) 55%, white 22%);
 
   /* ---- StudioBlank palette (light) ---- */
   --color-primary: #0a0a0a;
   --color-secondary: #fafafa;
   --color-tertiary: #d4d4d8;
-  /* A whisper of brand green mixed into the page field, not a flat copy-pasted off-white */
-  --surface-base: color-mix(in srgb, var(--brand) 4%, #fafafa);
+  /* The page field is the brand color itself, same as dark -- cards stay white */
+  --surface-base: var(--brand);
   --surface-inverse: #0a0a0a;
   --color-success: #16a34a;
   --color-warning: #ca8a04;
@@ -72,7 +79,7 @@
   --ink-muted: var(--color-info);
   --ink-faint: var(--gray-muted-border);
   --hairline: var(--gray-divider);
-  /* Brand shows through icons and links against the light, neutral field */
+  /* Brand shows through icons and links inside white cards */
   --accent: var(--brand);
 
   --surface: #ffffff;
@@ -91,7 +98,10 @@
 }
 
 .dark {
-  --brand: #025d44;
+  --brand: #025c42;
+  --page-ink: #fafafa;
+  --page-ink-muted: color-mix(in srgb, var(--brand) 5%, #f0f2f1);
+  --header-border: color-mix(in srgb, var(--brand) 55%, white 22%);
 
   /* ---- StudioBlank palette (dark = the brand field itself) ---- */
   --color-primary: #fafafa;
@@ -102,7 +112,10 @@
   --color-success: #22c55e;
   --color-warning: #eab308;
   --color-error: #ef4444;
-  --color-info: color-mix(in srgb, var(--brand) 20%, #a1a1aa);
+  /* 5% brand / #f0f2f1: ~4.9:1 against the card fill, ~6.6:1 against the page
+     field -- the previous 20%-brand mix sat at ~1.9:1, unreadable (WCAG AA
+     needs 4.5:1 for body text). */
+  --color-info: color-mix(in srgb, var(--brand) 5%, #f0f2f1);
 
   --gray-card-border: color-mix(in srgb, var(--brand) 55%, white 22%);
   --gray-divider: color-mix(in srgb, var(--brand) 75%, white 10%);

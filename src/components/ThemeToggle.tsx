@@ -21,7 +21,7 @@ export function ThemeToggle() {
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className="relative flex h-8 w-8 shrink-0 items-center justify-center transition-opacity active:opacity-60"
-      style={{ color: 'var(--ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
+      style={{ color: 'var(--page-ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
     >
       <Sun size={18} strokeWidth={2} className="absolute transition-opacity" style={{ transitionDuration: '150ms', opacity: isDark ? 0 : 1 }} />
       <Moon size={17} strokeWidth={2} className="absolute transition-opacity" style={{ transitionDuration: '150ms', opacity: isDark ? 1 : 0 }} />

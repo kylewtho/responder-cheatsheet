@@ -24,7 +24,7 @@ export function AppShell({ children }: AppShellProps) {
         style={{
           paddingTop: 'env(safe-area-inset-top, 0px)',
           background: 'var(--surface-base)',
-          borderBottom: scrolled ? '1px solid var(--gray-card-border)' : '1px solid transparent',
+          borderBottom: scrolled ? '1px solid var(--header-border)' : '1px solid transparent',
           transitionDuration: '150ms',
           transitionTimingFunction: 'var(--ease-out)',
         }}
