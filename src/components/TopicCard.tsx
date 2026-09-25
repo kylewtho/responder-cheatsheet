@@ -21,7 +21,7 @@ export function TopicCard({ topic }: { topic: Topic }) {
         <Icon size={18} strokeWidth={2} />
       </span>
       <div className="min-w-0 flex-1">
-        <div className="text-body-sm font-bold">{topic.title}</div>
+        <div className="text-body font-bold">{topic.title}</div>
         <div className="mt-0.5 text-caption font-light" style={{ color: 'var(--ink-muted)' }}>
           {topic.summary}
         </div>

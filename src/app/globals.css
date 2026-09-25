@@ -50,7 +50,7 @@
   --space-10: 128px;
 
   /* ---- Brand: the one identity color, sampled directly from the logo/banner art ---- */
-  --brand: #025c42;
+  --brand: #025f45;
   /* Text/icons that sit directly on --surface-base (headers, empty states) --
      always light, since the page field is the brand green in both themes now. */
   --page-ink: #fafafa;
@@ -98,7 +98,7 @@
 }
 
 .dark {
-  --brand: #025c42;
+  --brand: #025f45;
   --page-ink: #fafafa;
   --page-ink-muted: color-mix(in srgb, var(--brand) 5%, #f0f2f1);
   --header-border: color-mix(in srgb, var(--brand) 55%, white 22%);

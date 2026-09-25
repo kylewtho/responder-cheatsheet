@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { MapPin, WifiOff } from 'lucide-react';
 import { toast } from 'sonner';
-import { Panel } from './Panel';
 
 export function LocationCard() {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -78,73 +76,58 @@ export function LocationCard() {
     });
   };
 
-  return (
-    <Panel
-      className={locError ? 'cursor-pointer' : undefined}
-      onClick={locError ? getLocation : undefined}
-      role={locError ? 'button' : undefined}
-      tabIndex={locError ? 0 : undefined}
-    >
-      <div className="flex items-center gap-4 px-4 py-4">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center" style={{ color: 'var(--accent)' }}>
-          {!isOnline ? <WifiOff size={20} strokeWidth={2} /> : <MapPin size={20} strokeWidth={2} />}
-        </span>
-        <div className="min-w-0 flex-1">
-          <div className="text-body-sm font-bold" style={{ color: 'var(--ink)' }}>
-            {!isOnline ? (
-              'Offline'
-            ) : locLoading ? (
-              'Getting location…'
-            ) : w3w ? (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleCopyW3W();
-                }}
-                type="button"
-                className="font-mono underline decoration-dotted"
-                style={{ color: 'var(--accent)' }}
-              >
-                {'///'}
-                {w3w}
-              </button>
-            ) : (
-              suburb || town || city || 'Location unavailable'
-            )}
-          </div>
+  const placeName = suburb || town || city;
+  const clickable = Boolean(locError);
 
-          {!isOnline ? (
-            <div className="text-caption" style={{ color: 'var(--ink-muted)' }}>
-              No connection. Mnemonic pages still work offline.
-            </div>
-          ) : locLoading ? null : location ? (
-            <>
-              {w3w && (suburb || town || city) && (
-                <div className="mt-0.5 text-caption" style={{ color: 'var(--ink-muted)' }}>
-                  {suburb || town || city}
-                </div>
-              )}
-              <div className="font-mono mt-0.5 truncate text-caption" style={{ color: 'var(--ink-muted)' }}>
-                {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
-                <a
-                  href={`https://maps.google.com/?q=${location.lat},${location.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="ml-2 underline"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Open in Maps
-                </a>
-              </div>
-            </>
-          ) : locError ? (
-            <div className="text-caption" style={{ color: 'var(--color-error)' }}>
-              {locError}. Tap to try again.
-            </div>
-          ) : null}
-        </div>
+  return (
+    <div
+      onClick={clickable ? getLocation : undefined}
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      className={clickable ? 'cursor-pointer' : undefined}
+    >
+      <div className="text-caption" style={{ color: 'var(--page-ink-muted)' }}>
+        You&rsquo;re in
       </div>
-    </Panel>
+      <div className="text-h3 font-bold" style={{ color: 'var(--page-ink)' }}>
+        {!isOnline ? 'Offline' : locLoading ? 'Getting location…' : placeName || 'Location unavailable'}
+      </div>
+
+      {!isOnline ? (
+        <div className="mt-0.5 text-caption" style={{ color: 'var(--page-ink-muted)' }}>
+          No connection. Mnemonic pages still work offline.
+        </div>
+      ) : locLoading ? null : location ? (
+        w3w ? (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCopyW3W();
+            }}
+            type="button"
+            className="font-mono mt-0.5 text-caption underline decoration-dotted"
+            style={{ color: 'var(--page-ink-muted)' }}
+          >
+            {'///'}
+            {w3w}
+          </button>
+        ) : (
+          <a
+            href={`https://maps.google.com/?q=${location.lat},${location.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="font-mono mt-0.5 block text-caption underline decoration-dotted"
+            style={{ color: 'var(--page-ink-muted)' }}
+          >
+            {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
+          </a>
+        )
+      ) : locError ? (
+        <div className="mt-0.5 text-caption" style={{ color: 'var(--page-ink-muted)' }}>
+          {locError}. Tap to try again.
+        </div>
+      ) : null}
+    </div>
   );
 }

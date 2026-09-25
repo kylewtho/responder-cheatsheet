@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "ResQCard",
     type: "website",
-    images: [{ url: "/brand/banner.png", width: 1942, height: 809, alt: "ResQCard" }],
+    images: [{ url: "/brand/banner-og.png", width: 1942, height: 809, alt: "ResQCard" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "ResQCard",
     description,
-    images: ["/brand/banner.png"],
+    images: ["/brand/banner-og.png"],
   },
 };
 
@@ -46,8 +46,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#025c42" },
-    { media: "(prefers-color-scheme: dark)", color: "#025c42" },
+    { media: "(prefers-color-scheme: light)", color: "#025f45" },
+    { media: "(prefers-color-scheme: dark)", color: "#025f45" },
   ],
 };
 
