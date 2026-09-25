@@ -17,7 +17,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
 
   return (
     <main className="min-h-screen">
-      <div className="mx-auto min-h-screen w-full max-w-md md:border-x" style={{ borderColor: 'var(--gray-card-border)' }}>
+      <div className="mx-auto min-h-screen w-full max-w-md">
         <DetailHeader title={topic.title} backHref="/" icon={<Icon size={14} strokeWidth={2} />} />
         <div className="px-4 pb-16 pt-6">
           <SkillCard body={topic.body} />

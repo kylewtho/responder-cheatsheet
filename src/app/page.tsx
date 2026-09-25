@@ -7,7 +7,7 @@ export default function Home() {
   const topics = getAllTopics();
   return (
     <main className="min-h-screen">
-      <div className="mx-auto min-h-screen w-full max-w-md md:border-x" style={{ borderColor: 'var(--gray-card-border)' }}>
+      <div className="mx-auto min-h-screen w-full max-w-md">
         <AppShell title="ResQCard">
           <div className="space-y-6 px-4 pb-16 pt-6">
             <LocationCard />
