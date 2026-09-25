@@ -12,7 +12,7 @@ export default function Home() {
         style={{ backgroundImage: 'url(/brand/banner.png)', backgroundSize: 'auto 180px' }}
       >
         <AppShell>
-          <div className="space-y-6 px-4 pb-48 pt-6">
+          <div className="space-y-6 px-4 pb-48" style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' }}>
             <LocationCard />
             <TopicBrowser topics={topics} />
           </div>
