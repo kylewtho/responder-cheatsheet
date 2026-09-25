@@ -17,10 +17,28 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400"],
 });
 
+const description =
+  "Field-ready mnemonic reference cards for first responders: DRSABCDE, MARCH, GCS, IMIST-AMBO, METHANE, Triage Sieve, and vital sign ranges.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://resqcard.kyleho.net"),
   title: "ResQCard",
-  description: "Field-ready mnemonic reference cards for first responders: DRSABCDE, MARCH, GCS, IMIST-AMBO, METHANE, Triage Sieve, and vital sign ranges.",
+  description,
   manifest: "/manifest.json",
+  openGraph: {
+    title: "ResQCard",
+    description,
+    url: "/",
+    siteName: "ResQCard",
+    type: "website",
+    images: [{ url: "/brand/banner.png", width: 1942, height: 809, alt: "ResQCard" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ResQCard",
+    description,
+    images: ["/brand/banner.png"],
+  },
 };
 
 export const viewport: Viewport = {
