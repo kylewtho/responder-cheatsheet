@@ -19,7 +19,7 @@ export function TopicBrowser({ topics }: { topics: Topic[] }) {
   return (
     <div className="space-y-4">
       <SearchBox value={query} onChange={setQuery} />
-      <div className="grid grid-cols-2 gap-3">
+      <div className="flex flex-col gap-3">
         {filtered.map((topic) => (
           <TopicCard key={topic.slug} topic={topic} />
         ))}

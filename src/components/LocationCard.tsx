@@ -91,11 +91,25 @@ export function LocationCard() {
         </span>
         <div className="min-w-0 flex-1">
           <div className="text-body-sm font-bold" style={{ color: 'var(--ink)' }}>
-            {!isOnline
-              ? 'Offline'
-              : locLoading
-              ? 'Getting location…'
-              : suburb || town || city || 'Location unavailable'}
+            {!isOnline ? (
+              'Offline'
+            ) : locLoading ? (
+              'Getting location…'
+            ) : w3w ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCopyW3W();
+                }}
+                type="button"
+                className="font-mono underline decoration-dotted"
+              >
+                {'///'}
+                {w3w}
+              </button>
+            ) : (
+              suburb || town || city || 'Location unavailable'
+            )}
           </div>
 
           {!isOnline ? (
@@ -104,19 +118,10 @@ export function LocationCard() {
             </div>
           ) : locLoading ? null : location ? (
             <>
-              {w3w && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopyW3W();
-                  }}
-                  type="button"
-                  className="font-mono mt-0.5 text-caption underline"
-                  style={{ color: 'var(--ink)' }}
-                >
-                  {'///'}
-                  {w3w}
-                </button>
+              {w3w && (suburb || town || city) && (
+                <div className="mt-0.5 text-caption" style={{ color: 'var(--ink-muted)' }}>
+                  {suburb || town || city}
+                </div>
               )}
               <div className="font-mono mt-0.5 truncate text-caption" style={{ color: 'var(--ink-muted)' }}>
                 {location.lat.toFixed(5)}, {location.lng.toFixed(5)}

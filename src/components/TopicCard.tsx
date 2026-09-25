@@ -9,7 +9,7 @@ export function TopicCard({ topic }: { topic: Topic }) {
     <TransitionLink
       direction="forward"
       href={`/${topic.slug}`}
-      className="flex flex-col gap-3 border p-4 text-[var(--ink)] transition-[border-color] hoverable:hover:border-[var(--color-primary)] active:opacity-70"
+      className="flex items-center gap-4 border p-4 text-[var(--ink)] transition-[border-color] hoverable:hover:border-[var(--color-primary)] active:opacity-70"
       style={{
         background: 'var(--surface)',
         borderColor: 'var(--gray-card-border)',
@@ -20,7 +20,7 @@ export function TopicCard({ topic }: { topic: Topic }) {
       <span className="flex h-9 w-9 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
         <Icon size={18} strokeWidth={2} />
       </span>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <div className="text-body-sm font-bold">{topic.title}</div>
         <div className="mt-0.5 text-caption font-light" style={{ color: 'var(--ink-muted)' }}>
           {topic.summary}

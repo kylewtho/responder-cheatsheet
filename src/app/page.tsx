@@ -7,12 +7,14 @@ export default function Home() {
   const topics = getAllTopics();
   return (
     <main className="min-h-screen">
-      <AppShell title="ResQCard">
-        <div className="mx-auto max-w-md space-y-6 px-4 pb-16 pt-6">
-          <LocationCard />
-          <TopicBrowser topics={topics} />
-        </div>
-      </AppShell>
+      <div className="mx-auto min-h-screen w-full max-w-md md:border-x" style={{ borderColor: 'var(--gray-card-border)' }}>
+        <AppShell title="ResQCard">
+          <div className="space-y-6 px-4 pb-16 pt-6">
+            <LocationCard />
+            <TopicBrowser topics={topics} />
+          </div>
+        </AppShell>
+      </div>
     </main>
   );
 }
