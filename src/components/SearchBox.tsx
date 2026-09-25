@@ -11,7 +11,7 @@ interface SearchBoxProps {
 export function SearchBox({ value, onChange }: SearchBoxProps) {
   return (
     <div
-      className="flex h-10 items-center gap-2 border px-3 transition-[border-color] hoverable:hover:border-[var(--gray-muted-border)] has-[input:focus]:border-2 has-[input:focus]:border-[var(--color-primary)]"
+      className="flex h-10 items-center gap-2 border px-3 transition-[border-color] hoverable:hover:border-[var(--gray-muted-border)] has-[input:focus]:border-2 has-[input:focus]:border-[var(--accent)]"
       style={{
         background: 'var(--surface)',
         borderColor: 'var(--color-tertiary)',

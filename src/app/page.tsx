@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <div className="mx-auto min-h-screen w-full max-w-md">
-        <AppShell title="ResQCard">
+        <AppShell>
           <div className="space-y-6 px-4 pb-16 pt-6">
             <LocationCard />
             <TopicBrowser topics={topics} />

@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { ThemeToggle } from './ThemeToggle';
 
 interface AppShellProps {
-  title: string;
   children: React.ReactNode;
 }
 
-export function AppShell({ title, children }: AppShellProps) {
+export function AppShell({ children }: AppShellProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,21 +21,21 @@ export function AppShell({ title, children }: AppShellProps) {
   return (
     <>
       <div
-        className="sticky top-0 z-20 flex items-start justify-between px-4 pb-8 transition-[border-color]"
+        className="sticky top-0 z-20 flex h-14 items-center justify-end px-4 transition-[border-color]"
         style={{
-          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
           background: 'var(--surface-base)',
           borderBottom: scrolled ? '1px solid var(--gray-card-border)' : '1px solid transparent',
           transitionDuration: '150ms',
           transitionTimingFunction: 'var(--ease-out)',
         }}
       >
-        <h1 className="text-h1 font-bold" style={{ color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-          {title}
-        </h1>
         <ThemeToggle />
       </div>
       {children}
+      <div className="fixed bottom-4 right-4 z-30 h-12 w-12 overflow-hidden rounded-full" style={{ boxShadow: '0 0 0 2px var(--surface-base)' }}>
+        <Image src="/brand/dog-logo.png" alt="ResQCard" width={48} height={48} className="h-full w-full object-cover" />
+      </div>
     </>
   );
 }

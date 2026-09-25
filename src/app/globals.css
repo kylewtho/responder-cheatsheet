@@ -49,11 +49,15 @@
   --space-8: 96px;
   --space-10: 128px;
 
+  /* ---- Brand: the one identity color, per the site's logo ---- */
+  --brand: #025d44;
+
   /* ---- StudioBlank palette (light) ---- */
   --color-primary: #0a0a0a;
   --color-secondary: #fafafa;
   --color-tertiary: #d4d4d8;
-  --surface-base: #fafafa;
+  /* A whisper of brand green mixed into the page field, not a flat copy-pasted off-white */
+  --surface-base: color-mix(in srgb, var(--brand) 4%, #fafafa);
   --surface-inverse: #0a0a0a;
   --color-success: #16a34a;
   --color-warning: #ca8a04;
@@ -68,6 +72,8 @@
   --ink-muted: var(--color-info);
   --ink-faint: var(--gray-muted-border);
   --hairline: var(--gray-divider);
+  /* Brand shows through icons and links against the light, neutral field */
+  --accent: var(--brand);
 
   --surface: #ffffff;
   --surface-strong: #ffffff;
@@ -85,33 +91,37 @@
 }
 
 .dark {
-  /* ---- StudioBlank palette (dark = the system's own inversion) ---- */
+  --brand: #025d44;
+
+  /* ---- StudioBlank palette (dark = the brand field itself) ---- */
   --color-primary: #fafafa;
   --color-secondary: #0a0a0a;
-  --color-tertiary: #3f3f46;
-  --surface-base: #0a0a0a;
+  --color-tertiary: color-mix(in srgb, var(--brand) 55%, white 15%);
+  --surface-base: var(--brand);
   --surface-inverse: #fafafa;
   --color-success: #22c55e;
   --color-warning: #eab308;
   --color-error: #ef4444;
-  --color-info: #a1a1aa;
+  --color-info: color-mix(in srgb, var(--brand) 20%, #a1a1aa);
 
-  --gray-card-border: #27272a;
-  --gray-divider: #1c1c1f;
-  --gray-muted-border: #52525b;
+  --gray-card-border: color-mix(in srgb, var(--brand) 55%, white 22%);
+  --gray-divider: color-mix(in srgb, var(--brand) 75%, white 10%);
+  --gray-muted-border: color-mix(in srgb, var(--brand) 45%, white 30%);
 
   --ink: var(--color-primary);
   --ink-muted: var(--color-info);
   --ink-faint: var(--gray-muted-border);
   --hairline: var(--gray-divider);
+  /* The field is already the brand color -- icons/links stay neutral so they don't disappear into it */
+  --accent: var(--ink);
 
-  --surface: #111113;
-  --surface-strong: #151517;
+  --surface: color-mix(in srgb, var(--brand) 88%, white 12%);
+  --surface-strong: color-mix(in srgb, var(--brand) 82%, white 18%);
   --app-bg: var(--surface-base);
 
   --background: var(--surface-base);
   --foreground: var(--color-primary);
-  --card: #111113;
+  --card: color-mix(in srgb, var(--brand) 88%, white 12%);
   --card-foreground: var(--color-primary);
   --border: var(--gray-card-border);
 }

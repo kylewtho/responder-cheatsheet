@@ -37,13 +37,13 @@ export default function DetailHeader({ title, backHref, icon, count }: DetailHea
         href={backHref}
         aria-label="Back"
         className="flex h-8 w-8 shrink-0 items-center justify-center transition-opacity active:opacity-60"
-        style={{ color: 'var(--ink)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
+        style={{ color: 'var(--accent)', transitionDuration: '150ms', transitionTimingFunction: 'var(--ease-out)' }}
       >
         <ChevronLeft size={22} strokeWidth={2} />
       </TransitionLink>
 
       <div className="flex min-w-0 flex-1 items-center justify-center gap-2 px-1">
-        <span className="flex h-4 w-4 shrink-0 items-center justify-center" style={{ color: 'var(--ink)' }}>
+        <span className="flex h-4 w-4 shrink-0 items-center justify-center" style={{ color: 'var(--accent)' }}>
           {icon}
         </span>
         <h1 className="truncate text-h3 font-semibold" style={{ color: 'var(--ink)' }}>
