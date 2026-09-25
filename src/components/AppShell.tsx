@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { ThemeToggle } from './ThemeToggle';
 
 interface AppShellProps {
@@ -33,9 +32,6 @@ export function AppShell({ children }: AppShellProps) {
         <ThemeToggle />
       </div>
       {children}
-      <div className="fixed bottom-4 right-4 z-30 h-12 w-12 overflow-hidden rounded-full" style={{ boxShadow: '0 0 0 2px var(--surface-base)' }}>
-        <Image src="/brand/dog-logo.webp" alt="ResQCard" width={48} height={48} className="h-full w-full object-cover" />
-      </div>
     </>
   );
 }
